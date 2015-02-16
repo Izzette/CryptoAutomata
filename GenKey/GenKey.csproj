@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
-    <Commandlineparameters>Seed PlainText.txt Key</Commandlineparameters>
+    <Commandlineparameters>Seed Crystal.mp4 Key</Commandlineparameters>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -42,8 +42,11 @@
   <ItemGroup>
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
-    <Reference Include="RandomAutomata">
-      <HintPath>..\..\RandomAutomata\RandomAutomata\bin\Release\RandomAutomata.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RandomAutomata\RandomAutomata\RandomAutomata.csproj">
+      <Project>{08808063-93DC-4E99-9F61-7D26AF9E99FD}</Project>
+      <Name>RandomAutomata</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
