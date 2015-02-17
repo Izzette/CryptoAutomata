@@ -1,46 +1,10 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="EncodeOrDecode/EncodeOrDecode.cs">
-    <Files>
-      <File FileName="EncodeOrDecode/EncodeOrDecode.cs" Line="66" Column="4" />
-      <File FileName="GenKey/GenKey.cs" Line="65" Column="4" />
-      <File FileName="../RandomAutomata/RandomAutomata/RandomSequence.cs" Line="92" Column="6" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="EncodeOrDecode" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="GenKey" expanded="True">
-            <Node name="References" expanded="True" />
-          </Node>
-          <Node name="RandomAutomata" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+﻿<Properties StartupItem="EncodeOrDecode/EncodeOrDecode.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.EncodeOrDecode>
-    <MonoDevelop.Ide.CustomExecutionModes>
-      <Data Name="Default (Custom)" Id="fb0e112c-dd24-44c3-904b-465a8ad5a2e6" ModeId="Default">
-        <CommandData>
-          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
-            <Value Arguments="PlainText.txt Key.txt CipherText.txt" ctype="CustomArgsExecutionModeData">
-              <EnvironmentVariables />
-            </Value>
-          </Item>
-          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
-            <Value ctype="MonoExecutionParameters" />
-          </Item>
-        </CommandData>
-      </Data>
-    </MonoDevelop.Ide.CustomExecutionModes>
-  </MonoDevelop.Ide.ItemProperties.EncodeOrDecode>
-  <AuthorInfo Name="Isabell Cowan" Email="isabellcowan@gmail.com" Copyright="Isabell Cowan" Company="" Trademark="" />
   <MonoDevelop.Ide.ItemProperties.GenKey>
     <MonoDevelop.Ide.CustomExecutionModes>
       <Data Name="Default (Custom)" Id="5d6722a8-47e6-4671-90b7-e4441f37966a" ModeId="Default" PromptForParameters="True">
@@ -57,4 +21,21 @@
       </Data>
     </MonoDevelop.Ide.CustomExecutionModes>
   </MonoDevelop.Ide.ItemProperties.GenKey>
+  <AuthorInfo Name="Isabell Cowan" Email="isabellcowan@gmail.com" Copyright="Isabell Cowan" Company="" Trademark="" />
+  <MonoDevelop.Ide.ItemProperties.EncodeOrDecode>
+    <MonoDevelop.Ide.CustomExecutionModes>
+      <Data Name="Default (Custom)" Id="fb0e112c-dd24-44c3-904b-465a8ad5a2e6" ModeId="Default">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="PlainText.txt Key.txt CipherText.txt" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+    </MonoDevelop.Ide.CustomExecutionModes>
+  </MonoDevelop.Ide.ItemProperties.EncodeOrDecode>
 </Properties>

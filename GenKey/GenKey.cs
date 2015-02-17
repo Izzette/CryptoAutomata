@@ -20,11 +20,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.IO;
-using System.Threading.Tasks;
-using RandomAutomata;
-using System.Text;
 using System.Diagnostics;
+using System.IO;
+using RandomAutomata;
 
 namespace CryptoAutomata.GenKey
 {
