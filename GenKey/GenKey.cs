@@ -67,7 +67,14 @@ namespace CryptoAutomata.GenKey
 			length = 0;
 			path = String.Empty;
 			try {
-				seed = Convert.ToUInt64 (File.ReadAllText (args [0]));
+				byte[] seedBytes = File.ReadAllBytes (args [0]);
+				if (8 != seedBytes.Length) {
+					throw new FormatException ();
+				}
+				seed = 0;
+				foreach (byte letter in seedBytes) {
+					seed += (ulong)letter;
+				}
 				if (!File.Exists (args [1])) {
 					Console.ForegroundColor = ConsoleColor.Red;
 					Console.WriteLine ("Text does not exist!");
@@ -83,7 +90,7 @@ namespace CryptoAutomata.GenKey
 				return true;
 			} catch (FormatException) {
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine ("Arguments of invalid wrong format!");
+				Console.WriteLine ("Input of invalid format!");
 				Console.ResetColor ();
 				return true;
 			}
