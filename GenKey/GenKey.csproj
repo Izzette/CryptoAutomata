@@ -42,11 +42,6 @@
   <ItemGroup>
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\RandomAutomata\RandomAutomata\RandomAutomata.csproj">
-      <Project>{08808063-93DC-4E99-9F61-7D26AF9E99FD}</Project>
-      <Name>RandomAutomata</Name>
-    </ProjectReference>
+    <Reference Include="RandomAutomata, Version=1.0.5526.33422, Culture=neutral, PublicKeyToken=779e78f014934b6a" />
   </ItemGroup>
 </Project>
