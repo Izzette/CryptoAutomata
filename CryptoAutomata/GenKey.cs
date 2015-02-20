@@ -50,27 +50,50 @@ namespace CryptoAutomata
 				ConsoleManager.Warning ("Exiting!");
 				return true;
 			}
-			PrintParams (password, seed, pathToOriginal, length, pathToKey);
+			PrintParams (
+				password,
+				seed, 
+				pathToOriginal,
+				length, 
+				pathToKey
+			);
 			long totalElapsedTime = 0;
 			long constructRandomSequenceElapsedTime;
-			RandomSequence randomSequence = ConstructRandomSequence (seed, out constructRandomSequenceElapsedTime);
+			RandomSequence randomSequence = ConstructRandomSequence (
+				seed,
+				out constructRandomSequenceElapsedTime
+			);
 			totalElapsedTime += constructRandomSequenceElapsedTime;
 			long getRandomBytesElapsedTime;
-			byte[] randomBytes = GetRandomBytes (randomSequence, length, out getRandomBytesElapsedTime);
+			byte[] randomBytes = GetRandomBytes (
+				randomSequence,
+				length,
+				out getRandomBytesElapsedTime
+			);
 			totalElapsedTime += getRandomBytesElapsedTime;
 			long saveKeyElapsedTime;
-			SaveKey (pathToKey, randomBytes, out saveKeyElapsedTime);
+			SaveKey (
+				pathToKey,
+				randomBytes,
+				out saveKeyElapsedTime
+			);
 			totalElapsedTime += saveKeyElapsedTime;
 			Console.WriteLine ();
 			ConsoleManager.Completed ("Successfully generated key!");
-			ConsoleManager.Information ("Total elapsed time: {0:n0} ms", totalElapsedTime);
+			ConsoleManager.Information (
+				"Total elapsed time: {0:n0} ms",
+				totalElapsedTime
+			);
 			return false;
 		}
 
 		private static string GetPassword ()
 		{
 			string password = ConsoleManager.Enter ("Password (8 to 64 chars): ");
-			if ((8 > password.Length) || (64 < password.Length)) {
+			if (
+				(8 > password.Length)
+				|| (64 < password.Length)
+			) {
 				ConsoleManager.Warning ("Password invalid, please try again");
 				password = GetPassword ();
 			}
@@ -92,7 +115,8 @@ namespace CryptoAutomata
 				seed <<= 64 / password.Length;
 				seed ^= (ulong)c;
 			}
-			length = File.ReadAllBytes (pathToOriginal).Length;
+			FileInfo fileInfo = new FileInfo (pathToOriginal);
+			length = (int)fileInfo.Length;
 			return CheckFileName (ref pathToKey);
 		}
 
@@ -102,8 +126,14 @@ namespace CryptoAutomata
 			while (File.Exists (pathToKey)) {
 				Console.WriteLine ();
 				ConsoleManager.Warning ("Path/To/Key already exists");
-				ConsoleManager.Information ("Currently specified {0}", pathToKey);
-				string answer = ConsoleManager.Enter ("Continue anyways? [yes, rename, quit]: ").ToLower ();
+				ConsoleManager.Information (
+					"Currently specified {0}",
+					pathToKey
+				);
+				string answer = ConsoleManager.Enter (
+					"Continue anyways? [yes, rename, quit]: "
+				);
+				answer = answer.ToLower ();
 				if (answer.StartsWith ("y")) {
 					File.Delete (pathToKey);
 				} else if (answer.StartsWith ("r")) {
@@ -125,11 +155,27 @@ namespace CryptoAutomata
 			string pathToKey
 		) {
 			Console.WriteLine ();
-			ConsoleManager.Information ("Password: {0}", password);
-			ConsoleManager.Information ("Seed: {0:n0}", seed);
-			ConsoleManager.Information ("Path/To/Original: {0}", pathToOriginal);
-			ConsoleManager.Information ("Length: {0:n0}", length);
-			ConsoleManager.Information ("Path/To/Key: {0}", pathToKey);
+			ConsoleManager.Completed ("Successfully parsed arguments!");
+			ConsoleManager.Information (
+				"Password: {0}",
+				password
+			);
+			ConsoleManager.Information (
+				"Seed: {0:n0}",
+				seed
+			);
+			ConsoleManager.Information (
+				"Path/To/Original: {0}",
+				pathToOriginal
+			);
+			ConsoleManager.Information (
+				"Key length: {0}",
+				ConsoleManager.FormatBytes (length)
+			);
+			ConsoleManager.Information (
+				"Path/To/Key: {0}",
+				pathToKey
+			);
 		}
 
 		private static RandomSequence ConstructRandomSequence (
@@ -139,12 +185,18 @@ namespace CryptoAutomata
 			Console.WriteLine ();
 			ConsoleManager.Waiting ("Constructing RandomSequence generator ...");
 			Stopwatch stopwatch = new Stopwatch ();
-			ConsoleManager.Information ("Start time: {0}", DateTime.Now.TimeOfDay.ToString ());
+			ConsoleManager.Information (
+				"Start time: {0}",
+				DateTime.Now.TimeOfDay.ToString ()
+			);
 			stopwatch.Start ();
 			RandomSequence randomSequence = new RandomSequence (seed);
 			stopwatch.Stop ();
 			elapsedTime = stopwatch.ElapsedMilliseconds;
-			ConsoleManager.Information ("Elapsed time: {0:n0} ms", elapsedTime);
+			ConsoleManager.Information (
+				"Elapsed time: {0:n0} ms",
+				elapsedTime
+			);
 			return randomSequence;
 		}
 
@@ -156,12 +208,18 @@ namespace CryptoAutomata
 			Console.WriteLine ();
 			ConsoleManager.Waiting ("Getting random bytes ... ");
 			Stopwatch stopwatch = new Stopwatch ();
-			ConsoleManager.Information ("Start time: {0}", DateTime.Now.TimeOfDay.ToString ());
+			ConsoleManager.Information (
+				"Start time: {0}",
+				DateTime.Now.TimeOfDay.ToString ()
+			);
 			stopwatch.Start ();
 			byte[] randomBytes = randomSequence.GetNextBytes (length);
 			stopwatch.Stop ();
 			elapsedTime = stopwatch.ElapsedMilliseconds;
-			ConsoleManager.Information ("Elapsed time: {0:n0} ms", elapsedTime);
+			ConsoleManager.Information (
+				"Elapsed time: {0:n0} ms",
+				elapsedTime
+			);
 			return randomBytes;
 		}
 
@@ -174,12 +232,21 @@ namespace CryptoAutomata
 			ConsoleManager.Waiting ("Saving key ... ");
 			Console.ResetColor ();
 			Stopwatch stopwatch = new Stopwatch ();
-			ConsoleManager.Information ("Start time: {0}", DateTime.Now.TimeOfDay.ToString ());
+			ConsoleManager.Information (
+				"Start time: {0}",
+				DateTime.Now.TimeOfDay.ToString ()
+			);
 			stopwatch.Start ();
-			File.WriteAllBytes (pathToKey, randomBytes);
+			File.WriteAllBytes (
+				pathToKey,
+				randomBytes
+			);
 			stopwatch.Stop ();
 			elapsedTime = stopwatch.ElapsedMilliseconds;
-			ConsoleManager.Information ("Elapsed time: {0:n0} ms", elapsedTime);
+			ConsoleManager.Information (
+				"Elapsed time: {0:n0} ms",
+				elapsedTime
+			);
 		}
 
 	}

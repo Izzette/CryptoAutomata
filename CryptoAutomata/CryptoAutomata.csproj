@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>CryptoAutomata</RootNamespace>
     <AssemblyName>CryptoAutomata</AssemblyName>
-    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
     <StartupObject>CryptoAutomata.CryptoAutomata</StartupObject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>CryptoAutomata.key</AssemblyOriginatorKeyFile>

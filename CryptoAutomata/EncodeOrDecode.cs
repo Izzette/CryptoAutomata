@@ -1,5 +1,5 @@
 // 
-// CryptoAutomata/EncodeOrDecode/EncodeOrDecode.cs
+// CryptoAutomata/CryptoAutomata/EncodeOrDecode.cs
 // 
 // Author:
 //     Isabell Cowan <isabellcowan@gmail.com>
@@ -58,14 +58,25 @@ namespace CryptoAutomata
 			);
 			long totalElapsedTime = 0;
 			long cipherTextElapsedTime;
-			byte[] cipheredText = XOr (text, key, out cipherTextElapsedTime);
+			byte[] cipheredText = XOr (
+				text,
+				key,
+				out cipherTextElapsedTime
+			);
 			totalElapsedTime += cipherTextElapsedTime;
 			long saveElapsedTime;
-			SaveCipheredText (pathToCipher, cipheredText, out saveElapsedTime);
+			SaveCipheredText (
+				pathToCipher,
+				cipheredText,
+				out saveElapsedTime
+			);
 			totalElapsedTime += saveElapsedTime;
 			Console.WriteLine ();
 			ConsoleManager.Completed ("Successfully generated ciphered text!");
-			ConsoleManager.Information ("Total elapsed time: {0:n0} ms", totalElapsedTime);
+			ConsoleManager.Information (
+				"Total elapsed time: {0:n0} ms",
+				totalElapsedTime
+			);
 			return false;
 		}
 
@@ -87,11 +98,17 @@ namespace CryptoAutomata
 		private static bool CheckFileName (
 			ref string pathToCipher
 		) {
-			Console.WriteLine ();
 			while (File.Exists (pathToCipher)) {
+				Console.WriteLine ();
 				ConsoleManager.Warning ("Path/To/Cipher already exists");
-				ConsoleManager.Information ("Currently specified {0}", pathToCipher);
-				string answer = ConsoleManager.Enter ("Continue anyways? [yes, rename, quit]: ").ToLower ();
+				ConsoleManager.Information (
+					"Currently specified {0}",
+					pathToCipher
+				);
+				string answer = ConsoleManager.Enter (
+					"Continue anyways? [yes, rename, quit]: "
+				);
+				answer = answer.ToLower ();
 				if (answer.StartsWith ("y")) {
 					File.Delete (pathToCipher);
 				} else if (answer.StartsWith ("r")) {
@@ -113,11 +130,27 @@ namespace CryptoAutomata
 			string pathToCipher
 		) {
 			Console.WriteLine ();
-			ConsoleManager.Information ("Path/To/Original: {0}", pathToOriginal);
-			ConsoleManager.Information ("Text Length: {0:n0}", text.Length);
-			ConsoleManager.Information ("Path/To/Key: {0}", pathToKey);
-			ConsoleManager.Information ("Key Length: {0:n0}", key.Length);
-			ConsoleManager.Information ("Path/To/Cipher: {0}", pathToCipher);
+			ConsoleManager.Completed ("Successfully parsed arguments!");
+			ConsoleManager.Information (
+				"Path/To/Original: {0}",
+				pathToOriginal
+			);
+			ConsoleManager.Information (
+				"Text length: {0}",
+				ConsoleManager.FormatBytes (text.Length)
+			);
+			ConsoleManager.Information (
+				"Path/To/Key: {0}",
+				pathToKey
+			);
+			ConsoleManager.Information (
+				"Key length: {0}",
+				ConsoleManager.FormatBytes (key.Length)
+			);
+			ConsoleManager.Information (
+				"Path/To/Cipher: {0}",
+				pathToCipher
+			);
 		}
 
 		private static byte[] XOr (
@@ -128,7 +161,10 @@ namespace CryptoAutomata
 			Console.WriteLine ();
 			ConsoleManager.Waiting ("Ciphering ...");
 			Stopwatch stopwatch = new Stopwatch ();
-			ConsoleManager.Information ("Start time: {0}", DateTime.Now.TimeOfDay.ToString ());
+			ConsoleManager.Information (
+				"Start time: {0}",
+				DateTime.Now.TimeOfDay.ToString ()
+			);
 			stopwatch.Start ();
 			byte[] cipheredText = new byte[text.Length];
 			Parallel.For (0, text.Length, i => {
@@ -137,7 +173,10 @@ namespace CryptoAutomata
 			});
 			stopwatch.Stop ();
 			elapsedTime = stopwatch.ElapsedMilliseconds;
-			ConsoleManager.Information ("Elapsed time: {0:n0} ms", elapsedTime);
+			ConsoleManager.Information (
+				"Elapsed time: {0:n0} ms",
+				elapsedTime
+			);
 			return cipheredText;
 		}
 
@@ -149,12 +188,18 @@ namespace CryptoAutomata
 			Console.WriteLine ();
 			ConsoleManager.Waiting ("Saving cipher ... ");
 			Stopwatch stopwatch = new Stopwatch ();
-			ConsoleManager.Information ("Start time: {0}", DateTime.Now.TimeOfDay.ToString ());
+			ConsoleManager.Information (
+				"Start time: {0}",
+				DateTime.Now.TimeOfDay.ToString ()
+			);
 			stopwatch.Start ();
 			File.WriteAllBytes (pathToCipher, cipherText);
 			stopwatch.Stop ();
 			elapsedTime = stopwatch.ElapsedMilliseconds;
-			ConsoleManager.Information ("Elapsed time: {0:n0} ms", elapsedTime);
+			ConsoleManager.Information (
+				"Elapsed time: {0:n0} ms",
+				elapsedTime
+			);
 		}
 	
 	}

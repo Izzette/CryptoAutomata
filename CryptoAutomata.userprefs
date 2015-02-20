@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="CryptoAutomata/CryptoAutomata.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CryptoAutomata/Properties/AssemblyInfo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CryptoAutomata/CryptoAutomata.cs">
     <Files>
-      <File FileName="CryptoAutomata/CryptoAutomata.cs" Line="5" Column="5" />
-      <File FileName="CryptoAutomata/GenKey.cs" Line="22" Column="22" />
-      <File FileName="CryptoAutomata/EncodeOrDecode.cs" Line="33" Column="33" />
-      <File FileName="CryptoAutomata/ConsoleManager.cs" Line="5" Column="5" />
-      <File FileName="CryptoAutomata/Properties/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="CryptoAutomata/CryptoAutomata.cs" Line="6" Column="6" />
+      <File FileName="CryptoAutomata/GenKey.cs" Line="5" Column="5" />
+      <File FileName="CryptoAutomata/EncodeOrDecode.cs" Line="5" Column="5" />
+      <File FileName="CryptoAutomata/ConsoleManager.cs" Line="6" Column="6" />
+      <File FileName="CryptoAutomata/Properties/AssemblyInfo.cs" Line="33" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

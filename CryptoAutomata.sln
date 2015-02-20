@@ -169,6 +169,6 @@ Global
 		$0.VersionControlPolicy = $29
 		$29.inheritsSet = Mono
 		description = Simple XOr encryption based on RandomAutomata key generation.
-		version = 1.0.0
+		version = 1.1.0
 	EndGlobalSection
 EndGlobal

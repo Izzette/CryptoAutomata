@@ -26,6 +26,52 @@ namespace CryptoAutomata
 	static class ConsoleManager
 	{
 
+		public static string FormatBytes (
+			int bytes
+		) {
+			const int scale = 1024;
+			string[] orders = new string[] {
+				"Bytes",
+				"KB",
+				"MB",
+				"GB"
+			};
+			if (scale > bytes) {
+				return String.Format (
+					"{0:n0} {1}",
+					bytes,
+					orders [orders.GetLowerBound (0)]
+				);
+			}
+			int max = (int)Math.Pow(
+				scale,
+				orders.GetUpperBound (0)
+			);
+			int working = max;
+			for (
+				int i = orders.GetUpperBound (0);
+				i > orders.GetLowerBound (0);
+				i--
+			) {
+				if (working <= bytes) {
+					return String.Format (
+						"{0:n2} {1}",
+						Decimal.Divide (
+							(decimal)bytes,
+							(decimal)working
+						),
+						orders [i]
+					);
+				}
+				working /= scale;
+			}
+			return String.Format (
+				"{0:n2} {1}",
+				bytes / max,
+				orders [orders.GetUpperBound (0)]
+			);
+		}
+
 		public static void Neutral ()
 		{
 			Console.BackgroundColor = ConsoleColor.Black;
@@ -66,7 +112,12 @@ namespace CryptoAutomata
 			string format,
 			params object[] objs
 		) {
-			Information (String.Format (format, objs));
+			Information (
+				String.Format (
+					format,
+					objs
+				)
+			);
 		}
 
 		public static void Warning (

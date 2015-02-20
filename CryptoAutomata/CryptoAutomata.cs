@@ -31,7 +31,7 @@ namespace CryptoAutomata
 		public static void Main ()
 		{
 			ConsoleManager.Neutral ();
-			ConsoleManager.Header ("CryptoAutomata v1.0.0");
+			ConsoleManager.Header ("CryptoAutomata v1.1.0");
 			ConsoleManager.Information ("Isabell Cowan -- 2015");
 			ConsoleManager.Information ("<isabellcowan@gmail.com>");
 			string fileName;
@@ -39,13 +39,25 @@ namespace CryptoAutomata
 			if (Exit (exit)) {
 				return;
 			}
-			string keyFileName = tempDirName + "/" + fileName + ".key";
-			exit = GenKey.DeriveKey (fileName, ref keyFileName);
+			string keyFileName = (
+				tempDirName
+				+ "/"
+				+ fileName
+				+ ".key"
+			);
+			exit = GenKey.DeriveKey (
+				fileName,
+				ref keyFileName
+			);
 			if (Exit (exit)) {
 				return;
 			}
 			string cipherFileName = GetCipherFileName (fileName);
-			exit = EncodeOrDecode.Cipher (fileName, keyFileName, ref cipherFileName);
+			exit = EncodeOrDecode.Cipher (
+				fileName,
+				keyFileName,
+				ref cipherFileName
+			);
 			if (Exit (exit)) {
 				return;
 			}
@@ -55,13 +67,17 @@ namespace CryptoAutomata
 		}
 
 		private const string tempDirName = "temp";
-		private static readonly DirectoryInfo tempDir = Directory.CreateDirectory (tempDirName);
+		private static readonly DirectoryInfo tempDir = (
+			Directory.CreateDirectory (tempDirName)
+		);
 
 		private static bool GetArguments (out string pathToOriginal)
 		{
 			Console.WriteLine ();
 			ConsoleManager.Information ("Files in current directory:");
-			string[] filesInCurrentDirectory = Directory.GetFiles (Directory.GetCurrentDirectory ());
+			string[] filesInCurrentDirectory = Directory.GetFiles (
+				Directory.GetCurrentDirectory ()
+			);
 			foreach (string file in filesInCurrentDirectory) {
 				string[] splitFile = file.Split (
 					new char[2] { '/', '\\' }
@@ -75,7 +91,9 @@ namespace CryptoAutomata
 				}
 				ConsoleManager.Information (relativePath);
 			}
-			pathToOriginal = ConsoleManager.Enter ("Enter filename to cipher (including extention): ");
+			pathToOriginal = ConsoleManager.Enter (
+				"Enter filename to cipher (including extention): "
+			);
 			return CheckFileName (ref pathToOriginal);
 		}
 
@@ -83,10 +101,18 @@ namespace CryptoAutomata
 		{
 			while (!File.Exists (pathToOriginal)) {
 				ConsoleManager.Warning ("Path/To/Original does not exist");
-				ConsoleManager.Information ("Currently specified: {0}", pathToOriginal);
-				string answer = ConsoleManager.Enter ("How to continue? [rename, quit]: ").ToLower ();
+				ConsoleManager.Information (
+					"Currently specified: {0}",
+					pathToOriginal
+				);
+				string answer = ConsoleManager.Enter (
+					"How to continue? [rename, quit]: "
+				);
+				answer = answer.ToLower ();
 				if (answer.StartsWith ("r")) {
-					pathToOriginal = ConsoleManager.Enter ("New Path/To/Original: ");
+					pathToOriginal = ConsoleManager.Enter (
+						"New Path/To/Original: "
+					);
 				} else if (answer.StartsWith ("q")) {
 					return true;
 				} else {
@@ -118,7 +144,7 @@ namespace CryptoAutomata
 			}
 			tempDir.Delete (true);
 			Console.WriteLine ();
-			ConsoleManager.Waiting ("Press any key to exit ...");
+			ConsoleManager.Waiting ("Press enter to exit ...");
 			Console.ReadLine ();
 			return true;
 		}
