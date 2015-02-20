@@ -5,43 +5,49 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9EE78211-4524-49A4-9B90-FC88F5FD3128}</ProjectGuid>
+    <ProjectGuid>{71E972A8-8B57-4826-B169-45486662B5C6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CryptoAutomata.GenKey</RootNamespace>
-    <AssemblyName>GenKey</AssemblyName>
-    <newfilesearch>OnLoadAutoInsert</newfilesearch>
-    <StartupObject>CryptoAutomata.GenKey.GenKey</StartupObject>
-    <ReleaseVersion>0.3.0</ReleaseVersion>
+    <RootNamespace>CryptoAutomata</RootNamespace>
+    <AssemblyName>CryptoAutomata</AssemblyName>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <StartupObject>CryptoAutomata.CryptoAutomata</StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>CryptoAutomata.key</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <Externalconsole>true</Externalconsole>
-    <Commandlineparameters>Seed Crystal.mp4 Key</Commandlineparameters>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="GenKey.cs" />
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System" />
-    <Reference Include="RandomAutomata, Version=1.0.5526.33422, Culture=neutral, PublicKeyToken=779e78f014934b6a" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CryptoAutomata.cs" />
+    <Compile Include="EncodeOrDecode.cs" />
+    <Compile Include="GenKey.cs" />
+    <Compile Include="ConsoleManager.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\RandomAutomata\RandomAutomata\RandomAutomata.csproj">
+      <Project>{08808063-93DC-4E99-9F61-7D26AF9E99FD}</Project>
+      <Name>RandomAutomata</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
