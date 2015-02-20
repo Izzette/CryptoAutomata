@@ -32,8 +32,12 @@ namespace CryptoAutomata
 		{
 			ConsoleManager.Neutral ();
 			ConsoleManager.Header ("CryptoAutomata v1.1.0");
-			ConsoleManager.Information ("Isabell Cowan -- 2015");
+			ConsoleManager.Information ("Copyright (c) 2015 Isabell Cowan");
 			ConsoleManager.Information ("<isabellcowan@gmail.com>");
+			ConsoleManager.Information ("GNU -- GPL v3.0");
+			ConsoleManager.Information ("Must be distributed with sources and a copy of the license document");
+			ConsoleManager.Information ("If License.txt is not present, see <http://www.gnu.org/licenses/>");
+			ConsoleManager.Information ("If src/, src.zip, or src.tar.gz are not present, see <https://github.com/Izzette/CryptoAutomata>");
 			string fileName;
 			bool exit = GetArguments (out fileName);
 			if (Exit (exit)) {
